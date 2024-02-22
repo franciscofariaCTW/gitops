@@ -1,31 +1,14 @@
 apiVersion: v1
 kind: Service
 metadata:
-  creationTimestamp: "2024-02-20T11:19:27Z"
-  labels:
-    app: pacman
   name: pacman
   namespace: pacman-argo
-  resourceVersion: "4757"
-  uid: 919fa45b-2daa-4cb8-a22d-a28685efecee
 spec:
-  allocateLoadBalancerNodePorts: true
-  clusterIP: 10.107.54.180
-  clusterIPs:
-  - 10.107.54.180
-  externalTrafficPolicy: Cluster
-  internalTrafficPolicy: Cluster
-  ipFamilies:
-  - IPv4
-  ipFamilyPolicy: SingleStack
   ports:
-  - nodePort: 32347
-    port: 80
+  - port: 80
+    targetPort: 8080
     protocol: TCP
-    targetPort: 80
   selector:
     app: pacman
-  sessionAffinity: None
-  type: LoadBalancer
-status:
-  loadBalancer: {}
+  type: ClusterIP
+
