@@ -3,7 +3,7 @@ kind: HorizontalPodAutoscaler
 metadata:
   creationTimestamp: "2024-02-21T11:59:34Z"
   name: pacman
-  namespace: pacman
+  namespace: pacman-argo
   resourceVersion: "51862"
   uid: 12c7108c-584a-4bf0-b50a-636d5a2f42d9
 spec:
@@ -15,7 +15,7 @@ spec:
         averageUtilization: 1
         type: Utilization
     type: Resource
-  minReplicas: 1
+  minReplicas: 2
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment

@@ -8,12 +8,12 @@ metadata:
   labels:
     app: pacman
   name: pacman
-  namespace: default
+  namespace: pacman-argo
   resourceVersion: "33786"
   uid: e7ad4708-a279-42e7-9819-8add93d27956
 spec:
   progressDeadlineSeconds: 600
-  replicas: 3
+  replicas: 2
   revisionHistoryLimit: 10
   selector:
     matchLabels:
