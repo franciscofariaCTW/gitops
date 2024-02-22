@@ -1,62 +1,24 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  annotations:
-    deployment.kubernetes.io/revision: "1"
-  creationTimestamp: "2024-02-20T10:51:06Z"
-  generation: 1
-  labels:
-    app: pacman
   name: pacman
   namespace: pacman-argo
-  resourceVersion: "33786"
-  uid: e7ad4708-a279-42e7-9819-8add93d27956
 spec:
-  progressDeadlineSeconds: 600
   replicas: 2
-  revisionHistoryLimit: 10
   selector:
     matchLabels:
       app: pacman
-  strategy:
-    rollingUpdate:
-      maxSurge: 25%
-      maxUnavailable: 25%
-    type: RollingUpdate
   template:
     metadata:
-      creationTimestamp: null
       labels:
         app: pacman
     spec:
       containers:
-      - image: ghcr.io/franciscofariactw/pacman:2.0
-        imagePullPolicy: IfNotPresent
-        name: pacman
-        resources: {}
-        terminationMessagePath: /dev/termination-log
-        terminationMessagePolicy: File
-      dnsPolicy: ClusterFirst
-      restartPolicy: Always
-      schedulerName: default-scheduler
-      securityContext: {}
-      terminationGracePeriodSeconds: 30
-status:
-  availableReplicas: 3
-  conditions:
-  - lastTransitionTime: "2024-02-20T10:51:06Z"
-    lastUpdateTime: "2024-02-20T10:57:05Z"
-    message: ReplicaSet "pacman-6956bcdc64" has successfully progressed.
-    reason: NewReplicaSetAvailable
-    status: "True"
-    type: Progressing
-  - lastTransitionTime: "2024-02-21T11:51:31Z"
-    lastUpdateTime: "2024-02-21T11:51:31Z"
-    message: Deployment has minimum availability.
-    reason: MinimumReplicasAvailable
-    status: "True"
-    type: Available
-  observedGeneration: 1
-  readyReplicas: 3
-  replicas: 3
-  updatedReplicas: 3
+      - name: pacman
+        image: ghcr.io/franciscofariactw/pacman:2.0
+        resources:
+          requests:
+            cpu: "100m"  # Solicitação mínima de CPU.
+          limits:
+            cpu: "200m"  # Limite máximo de CPU.
+
